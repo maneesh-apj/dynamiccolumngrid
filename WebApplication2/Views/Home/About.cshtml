@@ -1,0 +1,57 @@
+﻿@model System.Data.DataTable
+@using System.Data
+
+@{
+    ViewBag.Title = "About";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+@{
+    List<dynamic> obj1 = new List<dynamic>();
+    obj1 = ViewBag.Total;
+    var grid = new WebGrid(obj1);
+}
+
+@grid.GetHtml(columns: ViewBag.Columns, tableStyle: "table", footerStyle: "foot")
+
+@Scripts.Render("~/bundles/jquery")
+<script>
+    $(function () {
+        var th = $("<tr class='webgrid-header'><th scope='col' colspan='3'>col 1 to 4</th><th scope='col' colspan='2'>col 5 and 6</th></tr>")
+        $("thead").prepend(th);
+    });
+</script>
+
+<style>
+    table {
+        font-family: verdana,arial,sans-serif;
+        font-size: 11px;
+        color: #333333;
+        border-width: 1px;
+        border-color: #999999;
+        border-collapse: collapse;
+        width: 80% !important;
+        max-width: 80% !important;
+    }
+
+        table th {
+            background: #b5cfd2;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #999999;
+        }
+
+        table td {
+            background: #dcddc0;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #999999;
+        }
+
+    .foot {
+        text-align: center;
+    }
+</style>  
